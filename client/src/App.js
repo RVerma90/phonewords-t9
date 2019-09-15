@@ -13,15 +13,23 @@ class App extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => this.setState({ response: res }))
       .catch(err => console.log(err));
   }
 
 
   callApi = async () => {
-    const response = await fetch("/greetings");
+    const response = await fetch("/suggestions", {
+      method: "POST",
+      body: JSON.stringify({ numbers: 63582}),
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    });
     const body = await response.json();
-
+    console.log(body);
+    
     if (response.status !== 200) throw Error(body.message);
 
     return body;
