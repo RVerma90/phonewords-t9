@@ -7,7 +7,8 @@ class App extends Component {
 
   state = {
     wordSuggestions: [],
-    numberString: ''
+    numberString: '',
+    realWordsOnly: false
   }
 
   callApi = async () => {
@@ -17,8 +18,10 @@ class App extends Component {
     }
 
     const requestBody = {
-      numbers: this.state.numberString
+      numbers: this.state.numberString,
+      realWordsOnly: this.state.realWordsOnly
     }
+
 
     const response = await fetch("/suggestions", {
       method: "POST",
@@ -58,14 +61,28 @@ class App extends Component {
   }
 
 
+  toggleRealWordsOnly = () => {
+    this.setState((prevState) => {
+      return { realWordsOnly: !prevState.realWordsOnly }
+    }, () => {
+      this.callApi();
+    });
+  }
+
+
   render() {
 
     return (
       <div className="App">
         <div className="App-main">
+
+          <div className="checkbox">
+            <label><input type="checkbox" name="checkbox" onClick={this.toggleRealWordsOnly} />Real English Words</label>
+          </div>
+
           <div className="mobile-phone">
 
-            <img src={logo} className="mobile-logo" />
+            <img alt="logo" src={logo} className="mobile-logo" />
             
             <div className="mobile-screen">
 

@@ -7,7 +7,8 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client \""
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "wordlist-english": "^1.2.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.2"

@@ -9,7 +9,7 @@ app.post("/suggestions", (req, res) => {
     return res.status(400).send('Numbers required for generating words!');
   }
   
-  const suggestions = generateWords(req.body.numbers);
+  const suggestions = generateWords(req.body.numbers, req.body.realWordsOnly);
   res.json(suggestions);
 });
 

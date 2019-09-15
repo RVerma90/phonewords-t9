@@ -1,3 +1,6 @@
+const wordList = require('wordlist-english');
+const englishWords = wordList['english'];
+
 const phoneKeyMap = {
   2: ['a', 'b', 'c'],
   3: ['d', 'e', 'f'],
@@ -9,7 +12,7 @@ const phoneKeyMap = {
   9: ['w', 'x', 'y', 'z']
 };
 
-const generateWords = (numbers) => {
+const generateWords = (numbers, realWordsOnly) => {
 
   // map numbers which is a string to phoneKeyMap
   // i.e if number is '2' it will map to ['a', 'b', 'c']
@@ -20,7 +23,15 @@ const generateWords = (numbers) => {
   // retrieve all combinations of keys based on numbers
   let allPossibleWords = generateWordsCombinations(numberString);
 
-  words = allPossibleWords;
+  if (realWordsOnly) {
+    allPossibleWords.map((word, index) => {
+      if (englishWords.indexOf(word) > -1) {
+        words.push(word);
+      }
+    });
+  } else {
+    words = allPossibleWords;
+  }
 
   return words;
 }
@@ -36,10 +47,6 @@ const generateWordsCombinations = (keys) => {
   const firstKey = keys[0];
   const secondKey = keys[1];
   
-  console.log('dude1',keys[0]);
-  console.log('dude2',keys[1]);
-
-
   let result = [];
 
   // Iterate over firstKey and secondKey in permutations and push each combination to result array
