@@ -2,7 +2,7 @@
   "name": "phonewords-t9",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && npm run start",
+    "client": "cd client && npm install && npm run start",
     "server": "nodemon backend/server.js",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client \""
   },
