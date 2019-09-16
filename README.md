@@ -2,6 +2,8 @@ Welcome the Phonewords T9, an old school phone simulator for predictive text mes
 
 ## Start the project on your local machine
 
+### `npm install`
+
 ### `npm start`
 
 This will run the backend and the frontend together!
